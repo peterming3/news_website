@@ -4,6 +4,7 @@ session_start();
 if(!(isset($_SESSION['token'])&&isset($_POST['token']))){
   echo "You have to log in";
   header("refresh:2;url=login.php");
+  exit;
 }
 if(!hash_equals($_SESSION['token'], $_POST['token'])){
 	die("Request forgery detected");
@@ -145,5 +146,55 @@ if(isset($_POST['delete_link'])){
   $stmt->close();
   echo "Delete Success";
   header("refresh:2;url=main.php");
+}
+if(isset($_POST['change_password'])){
+  echo "change";
+  $oldpassword=$mysqli->real_escape_string($_POST['oldpassword']);
+  $newpassword=$mysqli->real_escape_string($_POST['newpassword']);
+  $hash_password=0;
+  $stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
+  if(!$stmt){
+    printf("Query Prep Failed: %s\n", $mysqli->error);
+    exit;
+  }
+  // Bind the parameter
+  $stmt->bind_param('s', $username);
+  $stmt->execute();
+  
+  // Bind the results
+  $stmt->bind_result($cnt, $hash_password);
+  $stmt->fetch();
+  $stmt->close();
+  
+  // Compare the submitted password to the actual password hash
+  
+  if($cnt == 1 && password_verify($oldpassword, $hash_password)){
+    //right old password
+    $stmt = $mysqli->prepare("UPDATE users SET password=? where username=?");
+
+    if(!$stmt){
+      printf("fuck: %s\n", $mysqli->error);
+      exit;
+    }
+  
+    $hash_password=password_hash("$newpassword", PASSWORD_DEFAULT);
+  
+    $stmt->bind_param('ss',  $hash_password,$username);
+  
+    $stmt->execute();
+  
+    $stmt->close();
+  
+    echo"Success";
+  
+    header("refresh:1;url=login.php");
+  
+    exit;
+  } else{
+    // wrong old password
+    echo "wrong password";
+    header("refresh:2;url=manage.php");
+    exit;
+  }
 }
  ?>

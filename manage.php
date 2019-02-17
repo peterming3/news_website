@@ -1,20 +1,21 @@
 <?php
 require '/home/peterming/module3/connectsql.php';
 session_start();
-if(!(isset($_SESSION['token'])&&isset($_POST['token']))){
+if(!isset($_SESSION['username'])){
   echo "You have to log in";
-  exit;
   header("refresh:2;url=login.php");
+  exit;
 }
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
+$username=$_SESSION['username'];
+if($username=="guest"){
+    die("you are a guest.");
 }
+
 $stmt = $mysqli->prepare("select title,story_id from story where username=?");
 if(!$stmt){
   printf("Query Prep Failed: %s\n", $mysqli->error);
   exit;
 }
-$username=$_SESSION['username'];
 $stmt->bind_param('s',$username);
 $stmt->execute();
 $title;
@@ -127,7 +128,11 @@ $result=$stmt->get_result();
     </form>
     <?php } ?>
     <form action="main.php" class='return'>
-            <input type="submit" name="return" value="Return">
+        <input type="submit" name="return" value="Return">
+    </form>
+    <form action="change_password.php" class='change_password' method="Post">
+        <input type="submit" name='change_password' value="Change Password">
+        <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
     </form>
 </body>
 </html>
