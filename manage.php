@@ -2,7 +2,7 @@
 require '/home/peterming/module3/connectsql.php';
 session_start();
 if(!(isset($_SESSION['token'])&&isset($_POST['token']))){
-  echo "You have to logged in";
+  echo "You have to log in";
   exit;
   header("refresh:2;url=login.php");
 }
@@ -53,28 +53,81 @@ $result=$stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>account page</title>
+    <link rel="stylesheet" type="text/css" href="manage.css">
 </head>
 <body>
     <div class="story">
+    <h1>Stories:</h1>
         <?php
         while($row = $result->fetch_assoc()){?>
-            <a href="display_article.php?story_id="<?php echo $row['story_id']?>><?php echo $row['title']?></a>
-            <form action="edit_story.php" class="edit", method="POST">
+            <a href="display_article.php?story_id=<?php echo $row['story_id']?>"><?php echo $row['title']?></a>
+            <form action="edit_story.php" class="edit" method="POST">
                 <input type="submit" value="Edit" name='edit'>
                 <input type="hidden" value=<?php echo $row['story_id']?> name='story_id'>
                 <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
             </form>
-            <form action="manage_story.php" class="delete", method="POST">
+            <form action="manage_story.php" class="delete" method="POST">
                 <input type="submit" value="Delete" name='delete'>
                 <input type="hidden" value=<?php echo $row['story_id']?> name='story_id'>
                 <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
             </form>
+            <br/>
+            <br/>
             <?php } ?>
-        <form action="edit_story.php" class='add',method="POST">
+        <form action="edit_story.php" class='add' method="POST">
             <input type="submit" name="add" value="Add Story">
             <input type="hidden" name="story_id" value=0>
             <input type="hidden" name="token" value=<?php echo $_SESSION['token']?>>
         </form>
+
     </div>
+    <div class="comment">
+
+    <h1>Comments:</h1>
+    <?php
+    $stmt = $mysqli->prepare("select id,story_id,content from comments where username=?");
+    if(!$stmt){
+      printf("Query Prep Failed: %s\n", $mysqli->error);
+      exit;
+    }
+    $stmt->bind_param('s',$username);
+    $stmt->execute();
+    $result=$stmt->get_result();
+    while($row = $result->fetch_assoc()){?>
+    <p><?php echo $row['content'] ?></p>
+    <form action="edit_comment.php" class="edit" method="POST">
+        <input type="submit" value="Edit" name='edit_comment'>
+        <input type="hidden" value=<?php echo $row['id']?> name='id'>
+        <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
+    </form>
+    <form action="manage_story.php" class="delete" method="POST">
+        <input type="submit" value="Delete" name='delete_comment'>
+        <input type="hidden" value=<?php echo $row['id']?> name='id'>
+        <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
+    </form>
+    <?php } ?>
+    </div>
+
+    <h1>Links:</h1>
+    <?php
+    $stmt = $mysqli->prepare("select id,content from links where username=?");
+    if(!$stmt){
+        printf("Query Prep Failed: %s\n", $mysqli->error);
+        exit;
+    }
+    $stmt->bind_param('s',$username);
+    $stmt->execute();
+    $result=$stmt->get_result();
+    while($row = $result->fetch_assoc()){?>
+    <p><?php echo $row['content'] ?></p>
+    <form action="manage_story.php" class="delete" method="POST">
+        <input type="submit" value="Delete" name='delete_link'>
+        <input type="hidden" value=<?php echo $row['id']?> name='link_id'>
+        <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
+    </form>
+    <?php } ?>
+    <form action="main.php" class='return'>
+            <input type="submit" name="return" value="Return">
+    </form>
 </body>
 </html>

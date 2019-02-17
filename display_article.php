@@ -103,5 +103,11 @@
 		 	<input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
 			<input type="submit" name="return" value="Return">
 		 </form>
+		 <form action="manage_story.php" class="add_comment" id="add_comment" method="post">
+  			<input type="hidden" name="story_id" value=<?php echo $story_id?>>
+  			<input type="submit" name="add_comment" value="Add comment">
+  			<input type="hidden" name='token' value=<?php echo $_SESSION['token'] ?>>
+		</form>
+		<textarea name="comment" placeholder="Add your comment here..." cols="60" rows="10" form="add_comment"></textarea> 
 	</body>
 </html>
