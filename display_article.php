@@ -32,6 +32,9 @@
 		<?php
 		require '/home/peterming/module3/connectsql.php';
 		session_start();
+		if(!isset($_GET['story_id'])){
+			exit;
+		}
 		$story_id=$_GET['story_id'];
 
 		//display article

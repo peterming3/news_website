@@ -1,0 +1,16 @@
+div.user{
+    height: 300px;
+    width: 400px;
+    border-width: 2px;
+    border-style: solid;
+    position: relative;
+    float: left;
+}
+.user img{
+    position: relative;
+    width: 100px;
+    
+}
+.user p{
+    display: block;
+}

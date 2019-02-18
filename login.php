@@ -1,3 +1,4 @@
+
 <?php
 require '/home/peterming/module3/connectsql.php';
 session_start();
@@ -11,15 +12,24 @@ $_SESSION['username']="guest";
   <head>
     <meta charset="utf-8">
     <title>login_page</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
   </head>
   <body>
-    <form class="login" action="validuser.php" method="post">
-      <p>username: </p><input type="text" name="username">
-      <p>password: </p><input type="text" name="password">
+  
+  <div class= 'input'> 
+  <form class="login" action="validuser.php" method="post">
+
+      <input type="text" name="username" placeholder="Username">
+      <br/><br/>
+
+      <input type="password" name="password" placeholder="Password">
+      <br/><br/>
       <input type="hidden" name="token" value="<?php echo $token ?>">
-      <input type="submit" name="submit" value="submit">
+      <input type="submit" name="submit" value="login">
     </form>
-    <p><br></p>
+  </div>
+    <p><br></p >
+    <div class='form'>
     <form class="register" action="register.php" method="post">
       <input type="submit" name="register" value="Register">
     </form>
@@ -27,5 +37,10 @@ $_SESSION['username']="guest";
       <input type="hidden" name="token" value="<?php echo $token ?>">
       <input type="submit" name="guest" value="Continue as guest">
     </form>
+    </form>
+    <form action="all_users.php">
+      <input type="submit" name="all_user" value="List all users">
+    </form>
+    </div>
   </body>
 </html>

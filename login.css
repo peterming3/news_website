@@ -1,0 +1,39 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(153, 198, 228);
+    background-size: cover;
+    background-position: center;
+  }
+div.input{
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius:5px;
+    width:500px;
+    height: 500px;
+    background-position: center;
+    margin: auto;
+    text-align: center;
+    
+}
+.input form{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    height:50%;
+    width: 50%;
+    margin: -15% 0 0 -25%;
+}
+div.form{
+    background-color: aquamarine;
+    font-family: 'Open Sans', sans-serif;
+    text-transform:uppercase;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+
+
+}
+.form form{
+    display: inline-block;
+}

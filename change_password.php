@@ -20,8 +20,8 @@ require '/home/peterming/module3/connectsql.php';
  </head>
  <body>
      <form action="manage_story.php" class="change_password" method="POST">
-     <p>Old password: </p><input type="text" name="oldpassword">
-     <p>New password: </p><input type="text" name="newpassword">
+     <p>Old password: </p><input type="password" name="oldpassword">
+     <p>New password: </p><input type="password" name="newpassword">
      <input type="submit" name="change_password" value="Confirm">
      <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
      </form>

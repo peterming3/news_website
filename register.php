@@ -9,7 +9,7 @@
       <p>username:</p>
       <input type="text" name="username" >
       <p>password</p>
-      <input type="text" name="password" >
+      <input type="password" name="password" >
       <input type="hidden" name="register" value="Register">
       <input type="submit" name="ok" value="OK">
     </form>
@@ -28,8 +28,13 @@ if(!isset($_POST['register'])){
   exit;
 }
 if(isset($_POST['username'])&&isset($_POST['password'])){
+  
   $username=$mysqli->real_escape_string($_POST['username']);
+  
   $password=$mysqli->real_escape_string($_POST['password']);
+  if(empty($username)||empty($password)){
+    die("cannot be empty username or password");
+  }
   $cnt=0;
   //echo "$username";
 

@@ -150,6 +150,9 @@ if(isset($_POST['delete_link'])){
 if(isset($_POST['change_password'])){
   $oldpassword=$mysqli->real_escape_string($_POST['oldpassword']);
   $newpassword=$mysqli->real_escape_string($_POST['newpassword']);
+  if(empty($newpassword)){
+    die("cannot be empty password");
+  }
   $hash_password=0;
   $stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
   if(!$stmt){

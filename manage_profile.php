@@ -41,7 +41,7 @@ $username=$_SESSION['username'];
     <p>Profile Photo: </p><textarea
     class= 'profile_photo' name="profile_photo" form="edit_profile"
     ><?php echo "$profile_photo"; ?></textarea>
-    <img src="<?php echo $profile_photo ?>" alt="Cannot show">
+    <img src="<?php echo $profile_photo ?>" onerror="this.src='https://cdn.tutsplus.com/mac/authors/jacob-penderworth/user-black.png'" alt="">
     <form  action="manage_story.php" class="edit_profile" id="edit_profile" method="post">
       <input type="hidden" name="token" value="<?php echo $_SESSION['token']?>">
       <input type="submit" name="edit_profile" value="Confirm">

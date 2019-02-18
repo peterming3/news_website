@@ -26,3 +26,7 @@ textarea.nickname{
       width:50px;
       height: 40px;
   }
+  img{
+    position: relative;
+    width: 200px;
+  }
