@@ -70,6 +70,20 @@ if(isset($_POST['username'])&&isset($_POST['password'])){
 
   $stmt->close();
 
+  $stmt = $mysqli->prepare("insert into personal_profile (username) values (?)");
+
+  if(!$stmt){
+	  printf("fuck: %s\n", $mysqli->error);
+	  exit;
+  }
+
+
+  $stmt->bind_param('s', $username);
+
+  $stmt->execute();
+
+  $stmt->close();
+
   echo"Success";
 
   header("refresh:1;url=login.php");
