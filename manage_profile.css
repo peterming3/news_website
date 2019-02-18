@@ -1,0 +1,28 @@
+textarea.nickname{
+    left: auto;
+    font:20px Times;
+    width: 1300px;
+    height:30px;
+  }
+  textarea.personal_web{
+    font:15px Times New Roman;
+    width: 1300px;
+    height:30px;
+    left:auto;
+    display:block;
+  }
+  textarea.profile_photo{
+    font:15px Times New Roman;
+    width: 1300px;
+    height:30px;
+    left:auto;
+    display:block;
+  }
+  form.edit_profile{
+      display: block;
+      float:right;
+      position:absolute;
+      
+      width:50px;
+      height: 40px;
+  }

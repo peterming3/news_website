@@ -72,6 +72,11 @@ $result=$stmt->get_result();
                 <input type="hidden" value=<?php echo $row['story_id']?> name='story_id'>
                 <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
             </form>
+            <form action="edit_link.php" class="edit_link" method="POST">
+                <input type="submit" name="edit_link" value="Add link">
+                <input type="hidden" value=<?php echo $row['story_id']?> name='story_id'>
+                <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
+            </form>
             <br/>
             <br/>
             <?php } ?>
@@ -80,6 +85,7 @@ $result=$stmt->get_result();
             <input type="hidden" name="story_id" value=0>
             <input type="hidden" name="token" value=<?php echo $_SESSION['token']?>>
         </form>
+        
 
     </div>
     <div class="comment">
@@ -106,6 +112,7 @@ $result=$stmt->get_result();
         <input type="hidden" value=<?php echo $row['id']?> name='id'>
         <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
     </form>
+    
     <?php } ?>
     </div>
 
@@ -132,6 +139,10 @@ $result=$stmt->get_result();
     </form>
     <form action="change_password.php" class='change_password' method="Post">
         <input type="submit" name='change_password' value="Change Password">
+        <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
+    </form>
+    <form action="manage_profile.php" method="POST">
+        <input type="submit" name="manage_profile" value="Manage Account Information">
         <input type="hidden" value=<?php echo $_SESSION['token']?> name='token'>
     </form>
 </body>

@@ -1,13 +1,14 @@
-
+form.edit_link{
+    float:right;
+}
 form.edit{
     float:right;
-    display: block;
-    vertical-align: right;
+    
 }
 form.delete{
     float:right;
-    vertical-align: right;
 }
+
 /* a{
     display: inline-block;
 } */

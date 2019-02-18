@@ -104,7 +104,7 @@ if(isset($_POST['add_comment'])){
   $stmt->execute();
   $stmt->close();
   echo "Success";
-  header("refresh:2;url=display_article.php?story_id=$story_id");
+  header("refresh:0;url=display_article.php?story_id=$story_id");
 
 }
 if(isset($_POST['edit_comment'])){
@@ -148,7 +148,6 @@ if(isset($_POST['delete_link'])){
   header("refresh:2;url=main.php");
 }
 if(isset($_POST['change_password'])){
-  echo "change";
   $oldpassword=$mysqli->real_escape_string($_POST['oldpassword']);
   $newpassword=$mysqli->real_escape_string($_POST['newpassword']);
   $hash_password=0;
@@ -196,5 +195,36 @@ if(isset($_POST['change_password'])){
     header("refresh:2;url=manage.php");
     exit;
   }
+}
+//handle add link
+if(isset($_POST['edit_link'])){
+  $story_id=$_POST['story_id'];
+  $content=$_POST['content'];
+  $stmt = $mysqli->prepare("INSERT INTO links (story_id,username,content) values(?,?,?)");
+  if(!$stmt){
+    printf("Query Prep Failed: %s\n", $mysqli->error);
+    exit;
+  }
+  $stmt->bind_param('iss',$story_id,$username,$content);
+  $stmt->execute();
+  $stmt->close();
+  echo "Success";
+  header("refresh:0;url=display_article.php?story_id=$story_id");
+
+}
+if(isset($_POST['edit_profile'])){
+  $nickname=$_POST['nickname'];
+  $personal_web=$_POST['personal_web'];
+  $profile_photo=$_POST['profile_photo'];
+  $stmt = $mysqli->prepare("UPDATE personal_profile SET nickname=?,personal_web=?,profile_photo=? where username=?");
+  if(!$stmt){
+    printf("Query Prep Failed: %s\n", $mysqli->error);
+    exit;
+  }
+  $stmt->bind_param('ssss',$nickname,$personal_web,$profile_photo,$username);
+  $stmt->execute();
+  $stmt->close();
+  echo "Edit Success";
+  header("refresh:2;url=main.php");
 }
  ?>
