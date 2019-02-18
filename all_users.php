@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,7 @@ session_start();
           <p>Username: <?php echo $username?></p>
           <p>Nickname: <?php echo $nickname?></p>
           <p>Personal Website: <?php echo $personal_web?></p>
-          <img src="<?php echo $profile_photo ?>" onerror="this.src='https://cdn.tutsplus.com/mac/authors/jacob-penderworth/user-black.png'" alt="">
+          <img src="<?php echo $profile_photo ?>"  onerror="this.src='https://cdn.tutsplus.com/mac/authors/jacob-penderworth/user-black.png'" alt="cannot show">
           </div>
         <?php } ?>
         <?php $stmt->close(); ?>

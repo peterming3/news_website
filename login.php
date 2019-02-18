@@ -37,7 +37,7 @@ $_SESSION['username']="guest";
       <input type="hidden" name="token" value="<?php echo $token ?>">
       <input type="submit" name="guest" value="Continue as guest">
     </form>
-    </form>
+  
     <form action="all_users.php">
       <input type="submit" name="all_user" value="List all users">
     </form>

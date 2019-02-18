@@ -3,29 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>display_article</title>
+		<link rel="stylesheet" type="text/css" href="display_article.css">
 	</head>
-	<style type="text/css">
-  p.title{
-		margin-top: 30px;
-		font:40px Times New Roman ;
-		text-align: center;
-	}
-	div.links_comments{
-		position: absolute;
-		bottom: 0px;
-		width: 200px;
-	}
-	div.links{
-		margin-left: 20px;
-		top:0px;
-	}
-	div.comments{
-		margin-left: 20px;
-		top:0px;
+	
 
-	}
-
-	</style>
 	<body>
 
 
@@ -48,12 +29,12 @@
 		$title;
 		$content;
 		$stmt->bind_result($title,$content);
-		echo "<ul>\n";
+		
 		while($stmt->fetch()){
 
 		  printf("<p class=\"title\">%s<br/></p><p>%s</p>",htmlentities($title),htmlentities($content));
 		}
-		echo "</ul>\n";
+		
 
 		$stmt->close();
 

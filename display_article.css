@@ -1,0 +1,19 @@
+p.title{
+    margin-top: 30px;
+    font:40px Times New Roman ;
+    text-align: center;
+}
+div.links_comments{
+    position: absolute;
+    bottom: 0px;
+    width: 200px;
+}
+div.links{
+    margin-left: 20px;
+    top:0px;
+}
+div.comments{
+    margin-left: 20px;
+    top:0px;
+
+}

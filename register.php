@@ -23,10 +23,7 @@ if($mysqli->connect_errno) {
 	printf("Connection Failed: %s\n", $mysqli->connect_error);
 	exit;
 }
-if(!isset($_POST['register'])){
-  echo "You need to register from login page";
-  exit;
-}
+
 if(isset($_POST['username'])&&isset($_POST['password'])){
   
   $username=$mysqli->real_escape_string($_POST['username']);
