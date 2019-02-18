@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>account page</title>
+    <link rel="stylesheet" type="text/css" href="manage.css">
+</head>
+<body>
 <?php
 require '/home/peterming/module3/connectsql.php';
 session_start();
@@ -48,15 +58,9 @@ $result=$stmt->get_result();
 // echo "</ul>\n";
 // $stmt->close();
  ?>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>account page</title>
-    <link rel="stylesheet" type="text/css" href="manage.css">
-</head>
-<body>
+
+
+
     <div class="story">
     <h1>Stories:</h1>
         <?php

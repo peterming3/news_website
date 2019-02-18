@@ -1,3 +1,5 @@
+Yuanguang Ming: 467678
+Xinmeng Qiao:467758
 This is my news website. The link is [here!](http://peterming.net/~peterming/news_website/login.php)  
 You can login, add and edit stories, add and edit comments and add and edit links.
 
